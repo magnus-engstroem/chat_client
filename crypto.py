@@ -105,7 +105,7 @@ Nonce = b'\x00'*4 + b'\x00\x72\x65\x74\x6e\x75\x6f\x63'
 
 
 
-def Aead(key: bytes, counter: int, plain_text: bytes, auth_text: bytes) -> bytes:
+def Aead_encrypt(key: bytes, counter: int, plain_text: bytes, auth_text: bytes) -> bytes:
     """
     ChaCha20Poly1305 AEAD as specified in RFC7539.
     Nonce: 32 bits of zeros || 64-bit little-endian counter (12 bytes total).
@@ -115,7 +115,7 @@ def Aead(key: bytes, counter: int, plain_text: bytes, auth_text: bytes) -> bytes
     return ChaCha20Poly1305(key).encrypt(nonce, plain_text, auth_text)
 
 
-def AeadDecrypt(key: bytes, counter: int, cipher_text: bytes, auth_text: bytes) -> bytes:
+def Aead_decrypt(key: bytes, counter: int, cipher_text: bytes, auth_text: bytes) -> bytes:
     """
     ChaCha20Poly1305 AEAD decryption. Raises InvalidTag if authentication fails.
     """
